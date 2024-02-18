@@ -6,7 +6,7 @@ import 'package:vimarsh/models/data.dart';
 class Api {
   static Future<List<Data>?> getData({int? month, int? year}) async {
     try {
-      String url = "http://154.49.243.165:3005/api/crimes/";
+      String url = "https://server.viyugha.tech/api/crimes/";
       if (month != null) url += '?month=$month&year=$year';
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
