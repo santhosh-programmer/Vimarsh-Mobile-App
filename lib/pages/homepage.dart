@@ -1,13 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vimarsh/models/data.dart';
-import 'package:vimarsh/pages/live_stream.dart';
+import 'package:vimarsh/pages/cloudfare_view.dart';
 import 'package:vimarsh/services/api.dart';
-
-import 'jitsipage.dart';
+import 'package:vimarsh/utils/change_orientation.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -62,59 +60,69 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LiveStreamPage(),
-                  )).then((value) async {
-                await SystemChrome.setPreferredOrientations([
-                  DeviceOrientation.portraitUp,
-                  DeviceOrientation.landscapeLeft,
-                  DeviceOrientation.landscapeRight,
-                ]);
-              });
-            },
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: const Color.fromARGB(255, 19, 32, 59),
-              ),
-              child: const Text("RTSP"),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const JitjiPage(),
-                  )).then((value) async {
-                await SystemChrome.setPreferredOrientations([
-                  DeviceOrientation.portraitUp,
-                  DeviceOrientation.landscapeLeft,
-                  DeviceOrientation.landscapeRight,
-                ]);
-              });
-            },
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: const Color.fromARGB(255, 19, 32, 59),
-              ),
-              child: const Text("JITSI"),
-            ),
-          ),
-        ],
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: Row(
+      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //   children: [
+      //     InkWell(
+      //       onTap: () {
+      //         Navigator.push(
+      //             context,
+      //             MaterialPageRoute(
+      //               builder: (context) => const LiveStreamPage(),
+      //             )).then((value) async {
+      //           await SystemChrome.setPreferredOrientations([
+      //             DeviceOrientation.portraitUp,
+      //             DeviceOrientation.landscapeLeft,
+      //             DeviceOrientation.landscapeRight,
+      //           ]);
+      //         });
+      //       },
+      //       child: Container(
+      //         margin: const EdgeInsets.only(bottom: 10),
+      //         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      //         decoration: BoxDecoration(
+      //           borderRadius: BorderRadius.circular(5),
+      //           color: const Color.fromARGB(255, 19, 32, 59),
+      //         ),
+      //         child: const Text("RTSP"),
+      //       ),
+      //     ),
+      //     InkWell(
+      //       onTap: () {
+      //         Navigator.push(
+      //             context,
+      //             MaterialPageRoute(
+      //               builder: (context) => const JitjiPage(),
+      //             )).then((value) async {
+      //           await SystemChrome.setPreferredOrientations([
+      //             DeviceOrientation.portraitUp,
+      //             DeviceOrientation.landscapeLeft,
+      //             DeviceOrientation.landscapeRight,
+      //           ]);
+      //         });
+      //       },
+      //       child: Container(
+      //         margin: const EdgeInsets.only(bottom: 10),
+      //         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      //         decoration: BoxDecoration(
+      //           borderRadius: BorderRadius.circular(5),
+      //           color: const Color.fromARGB(255, 19, 32, 59),
+      //         ),
+      //         child: const Text("JITSI"),
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CloudFareVieww(),
+              )).then(changeOrientation);
+        },
+        child: const Icon(Icons.live_tv_rounded),
       ),
       body: Column(
         children: [
