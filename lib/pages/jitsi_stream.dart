@@ -19,7 +19,7 @@ class _JitjiPageState extends State<JitjiPage> {
 
   join() async {
     var options = JitsiMeetConferenceOptions(
-      room: "vimarshmeeting",
+      room: controller.text,
       configOverrides: {
         "startWithAudioMuted": true,
         "startWithVideoMuted": true,
@@ -101,7 +101,6 @@ class _JitjiPageState extends State<JitjiPage> {
         debugPrint("readyToClose");
       },
     );
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
     await _jitsiMeetPlugin.join(options, listener);
   }
 
